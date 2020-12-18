@@ -1,6 +1,5 @@
 #include <fstream>
 #include <iostream>
-#include <iterator>
 #include <string>
 using std::cerr;
 using std::cin;
@@ -34,7 +33,7 @@ int main(int argc, char *argv[]) {
     return -1;
   }
   while (std::getline(in, lineInfo)) {
-    std::cout << lineInfo << '\n';
+    cout << lineInfo << '\n';
   }
   return 0;
 }

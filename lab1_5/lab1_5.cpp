@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <iterator>
 #include <string>
 using std::cerr;
 using std::cin;
@@ -11,44 +12,29 @@ int main(int argc, char *argv[]) {
     cerr << "invalid argument.";
     return -1;
   }
-  std::ifstream in(argv[1], std::ios::binary);
+  std::ifstream in(argv[1]);
   if (!in) {
     cerr << argv[1] << "opened failed.";
     return -1;
   }
-  std::ofstream out(argv[2], std::ios::binary);
+  std::ofstream out(argv[2]);
   if (!out) {
     cerr << argv[2] << "opened failed";
     return -1;
   }
-  long long offset = 0, lineNo = 1;
   std::string lineInfo;
-  char delim = '\n';
-  while (in) {
-    while (in.peek() != '\n') {
-      offset++;
-    }
-    lineInfo.resize(offset);
-    in.seekg(-offset, std::ios_base::cur);
-    in.read(lineInfo.data(), offset + 1);
-    lineInfo.insert(0, std::to_string(lineNo));
-    lineNo++;
-    out.write(lineInfo.data(), lineInfo.size());
-    out.write(&delim, 1);
+  while (std::getline(in, lineInfo)) {
+    out << lineInfo << '\n';
   }
   out.close();
-  in.open(argv[2], std::ios::binary);
+  in.close();
+  in.open(argv[2]);
   if (!in) {
     cerr << "open output file failed.";
     return -1;
   }
-  offset = 0;
-  while (in.ignore()) {
-    offset++;
+  while (std::getline(in, lineInfo)) {
+    std::cout << lineInfo << '\n';
   }
-  in.seekg(0, std::ios_base::beg);
-  lineInfo.resize(offset);
-  in.read(lineInfo.data(), offset);
-  cout << lineInfo;
   return 0;
 }

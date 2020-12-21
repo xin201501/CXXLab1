@@ -22,8 +22,9 @@ int main(int argc, char *argv[]) {
     return -1;
   }
   std::string lineInfo;
+  size_t lineNo = 1;
   while (std::getline(in, lineInfo)) {
-    out << lineInfo << '\n';
+    out << lineNo++ << " " << lineInfo << '\n';
   }
   out.close();
   in.close();

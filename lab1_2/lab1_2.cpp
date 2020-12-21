@@ -18,9 +18,9 @@ int main() {
   std::thread testThreeIntNumberCase([&hasPassedAllTests] {
     int x, y, z;
     std::string errorMsg;
-    uniform_int_distribution<int> u;
+    std::uniform_int_distribution<int> u;
     for (size_t count = 1; count <= 100000; count++) {
-      random_device e;
+      std::random_device e;
       x = u(e);
       y = u(e);
       z = u(e);
@@ -40,9 +40,9 @@ int main() {
   std::thread testTwoIntNumberCase([&hasPassedAllTests] {
     int x, y;
     std::string errorMsg;
-    uniform_int_distribution<int> u;
+    std::uniform_int_distribution<int> u;
     for (size_t count = 1; count <= 100000; count++) {
-      random_device e;
+      std::random_device e;
       x = u(e);
       y = u(e);
       auto max = Maxl(x, y), correctAnswer = std::max(x, y);
@@ -61,9 +61,9 @@ int main() {
   std::thread testThreeDoubleNumberCase([&hasPassedAllTests]() {
     double x, y, z;
     std::string errorMsg;
-    uniform_real_distribution<double> u;
+    std::uniform_real_distribution<double> u;
     for (size_t count = 1; count <= 100000; count++) {
-      random_device e;
+      std::random_device e;
       x = u(e);
       y = u(e);
       z = u(e);
@@ -83,9 +83,9 @@ int main() {
   std::thread testTwoDoubleNumberCase([&hasPassedAllTests]() {
     double x, y;
     std::string errorMsg;
-    uniform_real_distribution<double> u;
+    std::uniform_real_distribution<double> u;
     for (size_t count = 1; count <= 100000; count++) {
-      random_device e;
+      std::random_device e;
       x = u(e);
       y = u(e);
       auto max = Maxl(x, y), correctAnswer = std::max(x, y);
